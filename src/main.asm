@@ -1,4 +1,8 @@
 MainMenu:
+    ld hl, Menus + 4 * (TEST_NR - 1)
+    call RunTests
+    
+
 	ld b, 0
 .main_loop
 	rst ClearScreen
@@ -192,7 +196,7 @@ RunTests:
 	coord de, 6, 17
 	ld hl, .return
 	rst WaitVBlank
-	rst Print
+	;rst Print
 .return_loop
 	call WaitForButtonPress
 	and a

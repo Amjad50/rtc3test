@@ -84,12 +84,11 @@ LongSecondWrite:
 	check_timer .check, nz
 .done
 	ld hl, hTestResult
-	call PrintTime
 	cpw de, 9985
-	ret c
+	jp  c, PassFailResult
 	cpw de, 10016
 	ccf
-	ret
+	jp  PassFailResult
 
 ; These tests are all identical. I only want to write this thing once.
 ___test_sub_second_register_write: MACRO
@@ -134,12 +133,11 @@ ___test_sub_second_register_write: MACRO
 	cp b
 	check_timer .check, nz
 	ld hl, hTestResult
-	call PrintTime
 	cpw de, (\2) * 500 - 15
-	ret c
+	jp  c, PassFailResult
 	cpw de, (\2) * 500 + 16
 	ccf
-	ret
+	jp  PassFailResult
 ENDM
 
 ShortMinuteWrite:
@@ -193,9 +191,8 @@ RTCOffTimingTest:
 	cp b
 	check_timer .check, nz
 	ld hl, hTestResult
-	call PrintTime
 	cpw de, 3985
-	ret c
+	jp  c, PassFailResult
 	cpw de, 4016
 	ccf
-	ret
+	jp  PassFailResult

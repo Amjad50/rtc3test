@@ -52,12 +52,11 @@ TickTest:
 	cp b
 	check_timer .tick_loop, nz
 	ld hl, hTestResult
-	call PrintTime
 	cpw de, 9990
-	ret c
+	jp  c, PassFailResult
 	cpw de, 10011
-	ccf
-	ret
+    ccf
+	jp  PassFailResult
 
 OffTest:
 	write_RTC_register RTCDH, $40
