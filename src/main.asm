@@ -196,6 +196,8 @@ RunTests:
 	coord de, 6, 17
 	ld hl, .return
 	rst WaitVBlank
+
+    ld b, b ; software breakpoint after the test
 	;rst Print
 .return_loop
 	call WaitForButtonPress
